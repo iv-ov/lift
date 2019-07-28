@@ -12,6 +12,11 @@ export default new Router({
       component: Home
     },
     {
+        path: '/lift',
+        name: 'lift',
+        component: () => import(/* webpackChunkName: "lift" */ './views/Lift.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
