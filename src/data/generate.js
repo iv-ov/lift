@@ -1,9 +1,20 @@
 const {elevators} = require('./elevators');
-const {events} = require('./operations');
-const {remont} = require('./remont');
+const {events} = require('./events');
+const {remonts} = require('./remonts');
 
 
-const generatedElevators = elevators(2);
-console.log(generatedElevators);
-console.table(events(10)(generatedElevators));
-console.table(remont(5)(generatedElevators));
+
+const _elevators = elevators(100);
+const _events = events(5000)(_elevators);
+const _remonts = remonts(10)(_elevators);
+
+
+const debug = 1;
+if (debug){
+    debug && console.log(_elevators);
+    debug && console.table(_events);
+    debug && console.table(_remonts);
+} else {
+    const all = {_elevators, _events, _remonts};
+    console.log(JSON.stringify(all));
+}

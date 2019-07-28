@@ -1,7 +1,7 @@
 const {randomInt, randomArrayElement, padNumber} = require('./utils');
 
 
-module.exports = {remont: (number)=>(elevators)=>{
+module.exports = {remonts: (number)=>(elevators)=>{
     return new Array(number).fill(0).map(e => item(elevators));
 }};
 
