@@ -1,60 +1,35 @@
 <template>
   <div class="about">
-    <h1>Лифт #1278056</h1>
+    <h1>Лифты</h1>
 
-
-
-  <el-table
-    :data="elevators"
-    :default-sort = "{prop: 'start_date', order: 'descending'}"
-    style="width: 100%">
-    <el-table-column
-      prop="start_date"
-      label="Дата ввода в эксплуатацию"
-      sortable>
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="Name">
-    </el-table-column>
-    <el-table-column
-      prop="address"
-      label="Address"
-      :formatter="formatter">
-    </el-table-column>
-  </el-table>
-
+    <el-table
+      :data="elevators"
+      :default-sort="{prop: 'start_date', order: 'descending'}"
+      style="width: 100%"
+    >
+      <el-table-column prop="start_date" label="Дата ввода в эксплуатацию" sortable width="240"></el-table-column>
+      <el-table-column prop="model_id" label="Модель" :formatter="modelFormatter" sortable></el-table-column>
+      <el-table-column prop="controlStationId" label="СУЛ" width="240" sortable></el-table-column>
+      <el-table-column prop="address" label="Address" :formatter="addressFormatter"></el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        elevators: [{
-          id: '1',
-          start_date: '2016-05-03',
-          name: 'Tom',
-          address: 'ЦАО, р-н Пресненский, ул. Заморёнова, д. 27'
-        }, {
-          start_date: '2016-05-02',
-          name: 'Tom',
-          address: 'No. 189, Grove St, Los Angeles'
-        }, {
-          start_date: '2016-05-04',
-          name: 'Tom',
-          address: 'No. 189, Grove St, Los Angeles'
-        }, {
-          start_date: '2016-05-01',
-          name: 'Tom',
-          address: 'No. 189, Grove St, Los Angeles'
-        }]
-      }
+const elevators = require("../data/_data.json")._elevators;
+
+export default {
+  data() {
+    return {elevators};
+  },
+  methods: {
+    addressFormatter(row, column) {
+      return row.address;
     },
-    methods: {
-      formatter(row, column) {
-        return row.address;
-      }
+    modelFormatter(row, column) {
+        const {name, creator} = row.model_id;
+        return `${name} (${creator})`;
     }
   }
+};
 </script>
