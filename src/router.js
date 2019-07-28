@@ -13,7 +13,12 @@ export default new Router({
     },
     {
         path: '/lift',
-        name: 'lift',
+        name: 'lifts',
+        component: () => import(/* webpackChunkName: "lift" */ './views/Lifts.vue')
+    },
+    {
+        path: '/lift/123',
+        name: 'liftById',
         component: () => import(/* webpackChunkName: "lift" */ './views/Lift.vue')
     },
     {

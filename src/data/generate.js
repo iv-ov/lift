@@ -9,7 +9,7 @@ const _events = events(5000)(_elevators);
 const _remonts = remonts(10)(_elevators);
 
 
-const debug = 1;
+const debug = 0;
 if (debug){
     debug && console.log(_elevators);
     debug && console.table(_events);

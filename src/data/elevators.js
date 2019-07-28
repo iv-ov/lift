@@ -10,7 +10,7 @@ const elevator = ()=>({
 
     start_date: `${randomInt(2010, 2018)}-${padNumber(randomInt(1, 12))}-${padNumber(randomInt(1, 31))}`,
 
-    model_id: randomArrayElement(models),
+    model: randomArrayElement(models),
     controlStationId: randomArrayElement(controlStations),
     address: `${randomArrayElement(okruga)}, ул. ${randomArrayElement(streets)}, д. ${randomInt(1, 60)}`,
 });
