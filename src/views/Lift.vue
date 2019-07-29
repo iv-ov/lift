@@ -13,9 +13,7 @@
             <DataRow label="Режим работы">Нормальная работа</DataRow>
             <DataRow label="Состояние лифта">Движение кабины вверх</DataRow>
           </el-col>
-          <el-col :span="12">
-            
-          </el-col>
+          <el-col :span="12"></el-col>
         </el-row>
         <hr />
         <el-row>
@@ -30,20 +28,39 @@
         </el-row>
       </el-tab-pane>
 
-    <el-tab-pane label="Режим работы"></el-tab-pane>
-    <el-tab-pane label="Состояние"></el-tab-pane>
-    <el-tab-pane label="Документация"></el-tab-pane>
+      <el-tab-pane label="Режим работы"></el-tab-pane>
+      <el-tab-pane label="Состояние"></el-tab-pane>
+      <el-tab-pane label="Документация"></el-tab-pane>
 
       <el-tab-pane label="Журнал">
         <div class="block">
-            <ul v-for="item in events">
-                <li :type="item.eventCode.charAt(0) === 'D' ?
-                    'danger':
-                    (item.eventCode.charAt(0) === 'E' ? 'warning': '')
-                ">
-                    {{ item.createdAt }} | {{ item.eventCode }}
-                </li>
-            </ul>
+          <ul v-for="item in events">
+            <li>
+              {{ item.createdAt }} |
+              <span
+                :style="`color: ${item.eventCode.charAt(0)==='D'?'red':(item.eventCode.charAt(0) === 'E' ? 'orange': '')}`"
+              >
+                {{ item.eventCode }}
+                {{ ({
+                'D2': 'Срабатывание системы защиты двигателя по перегреву',
+                'D3': 'Превышено контрольное время включения привода дверей на открытие',
+                'D12': 'Неисправность грузовзвешивающего устройства',
+                'D9': 'Неисправен реверс дверей',
+                'E3': 'Произошёл сбой местоположения',
+                }[item.eventCode]
+                )
+                ?
+                {
+                'D2': 'Срабатывание системы защиты двигателя по перегреву',
+                'D3': 'Превышено контрольное время включения привода дверей на открытие',
+                'D12': 'Неисправность грузовзвешивающего устройства',
+                'D9': 'Неисправен реверс дверей',
+                'E3': 'Произошёл сбой местоположения',
+                }[item.eventCode]
+                : ''}}
+              </span>
+            </li>
+          </ul>
         </div>
       </el-tab-pane>
     </el-tabs>
